@@ -59,8 +59,8 @@ def home(request):
 #         else:
 #             lastSeenId = row.title
 
-    slice_object = SliceNews.objects.order_by('publish_date')[:10]
-    article_object = ArticleNews.objects.order_by('publish_date')[:20]
+    slice_object = SliceNews.objects.all()
+    article_object = ArticleNews.objects.all()
 
     context = {'slices': slice_object, 'articles': article_object}
     return render(request, 'news/home.html', context)
