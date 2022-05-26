@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import dj_database_url
 import os
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -40,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'ckeditor',
-#     'ckeditor_uploader',
+    #     'ckeditor_uploader',
 
     'news.apps.NewsConfig',
     'ggtrends.apps.GgtrendsConfig',
@@ -152,17 +153,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static")
+]
+
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-MEDIA_URL = '/images/'
-
-STATICFILES_DIRS = [
-    BASE_DIR / 'static'
-]
 
 # PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 # PROJECT_ROOT = Path(__file__).resolve().parent.parent
@@ -193,7 +190,7 @@ LOGGING = {
     'loggers': {
         'django': {
             'handlers': ['console'],
-             'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
         },
     },
 }
