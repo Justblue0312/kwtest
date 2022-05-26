@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from keyword_proj.const import MSN_URL
 from .utils import get_keyword_rake, get_msn_content_from_url, get_msn_url_from_body_html, get_news_posts, convert_datetime
@@ -59,11 +60,12 @@ def home(request):
 #         else:
 #             lastSeenId = row.title
 
-    slice_object = SliceNews.objects.all()
-    article_object = ArticleNews.objects.all()
+    # slice_object = SliceNews.objects.all()
+    # article_object = ArticleNews.objects.all()
 
-    context = {'slices': slice_object, 'articles': article_object}
-    return render(request, 'news/home.html', context)
+    # context = {'slices': slice_object, 'articles': article_object}
+    # return render(request, 'news/home.html', context)
+    return HttpResponse('Hello world')
 
 
 def getArticleNews(request, pk):
