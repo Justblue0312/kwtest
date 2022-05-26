@@ -1,0 +1,76 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% block title %}
+Facebook Posts
+{% endblock title %}
+
+{% block content %}
+
+
+{% if posts %}
+
+<section id="page-header">
+    <div class="row current-cat">
+        <div class="col-full">
+            <h1>Category: Facebook Posts</h1>
+        </div>
+    </div>
+</section>
+
+<section id="bricks">
+    <div class="row masonry">
+        <!-- brick-wrapper -->
+        <div class="bricks-wrapper">
+            <div class="grid-sizer"></div>
+            {% for post in posts %}
+            <article class="brick entry format-standard animate-this">
+                <div class="entry-text">
+                    <div class="entry-header">
+
+                        <div class="entry-meta">
+                            <span class="cat-links">
+                                <a>{{post.name}}</a>
+                                <a>{{post.posted_on|capfirst}}</a>
+                            </span>
+                        </div>
+
+                        <h1 class="entry-title"><a href="{% url 'post' post.id %}">{{post.content|slice:"50"}}...</a>
+                        </h1>
+
+                    </div>
+                    <div class="entry-excerpt">
+                        {{post.content|slice:"120"}}
+                    </div>
+                </div>
+
+            </article> <!-- end article -->
+
+
+
+            {% comment %}
+            <div class="post" style="margin:32px; border-bottom: 5px solid; padding: 60px;">
+                <h3>{{post.posted_on}}</h3>
+                <h1>Source: {{post.name}}</h1>
+                <p class="quote" style="border-left: 5px solid lightgrey; padding-left: 5px;">
+                    {{post.content}}
+                </p>
+                <a href="{{post.post_url}}">Read more...</a>
+            </div>
+            {% endcomment %}
+            {% endfor %}
+            {% endif %}
+
+        </div>
+        <!-- end brick-wrapper -->
+    </div>
+    <!-- end row -->
+</section>
+<!-- end bricks -->
+
+
+
+
+
+{% endblock content %}

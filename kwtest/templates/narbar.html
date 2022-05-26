@@ -1,0 +1,57 @@
+{% load static %}
+
+
+<header class="short-header">
+
+    <div class="gradient-block"></div>
+
+    <div class="row header-content">
+
+        <div class="logo">
+            <a href="{% url 'home' %}">Author</a>
+        </div>
+
+        <nav id="main-nav-wrap">
+            <ul class="main-navigation sf-menu">
+                <li><a href="{% url 'home' %}" title="">Home</a></li>
+                <li><a href="{% url 'trends_home' %}" title="">Trend News</a></li>
+                <li><a href="{% url 'trend_index' %}" title="">Google Trends</a></li>
+                <li><a href="{% url 'facebook' %}" title="">Facebook</a></li>
+                <li><a href="{% url 'twitter' %}" title="">Twitter</a></li>
+                <li><a href="{% url 'youtube' %}" title="">Youtube</a></li>
+                <li class="has-children">
+                    <a href="single-standard.html" title="">Tool</a>
+                    <ul class="sub-menu">
+                        <li><a href="{% url 'yake' %}">Yake</a></li>
+                        <li><a href="{% url 'rake' %}">Rake & Underthesea</a></li>
+                    </ul>
+                </li>
+                <li><a href="{% url 'about' %}" title="">About</a></li>
+                <li><a href="{% url 'contact' %}" title="">Contact</a></li>
+            </ul>
+        </nav> <!-- end main-nav-wrap -->
+
+        <div class="search-wrap">
+
+            <form role="search" method="POST" class="search-form" action="{% url 'search' %}">
+                {% csrf_token %}
+                <label>
+                    <span class="hide-content">Search for:</span>
+                    <input class="search-field" value="" type="search" placeholder="Search" aria-label="Search"
+                        aria-label="Search" name="search_query" id="search_query">
+                </label>
+                <input type="submit" class="search-submit" value="Search">
+            </form>
+
+            <a href="#" id="close-search" class="close-btn">Close</a>
+
+        </div> <!-- end search wrap -->
+
+        <div class="triggers">
+            <a class="search-trigger" href="#"><i class="fa fa-search"></i></a>
+            <a class="menu-toggle" href="#"><span>Menu</span></a>
+        </div> <!-- end triggers -->
+
+    </div>
+
+</header>

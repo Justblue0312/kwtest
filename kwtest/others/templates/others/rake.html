@@ -1,0 +1,36 @@
+{% extends 'main.html' %}
+
+{% block title %}
+RAKE 
+{% endblock title %}
+
+{% block content %}
+<div style="align-content: center;margin: 16px;text-align: center;font-size: 2em;font-family: fantasy;">RAKE Algorithm & Underthesea</div>
+
+<div class="wrapper" style="margin:16px">
+    <style>
+        .wrapper {
+            text-align: center;
+        }
+
+        .button {
+            position: absolute;
+            top: 50%;
+        }
+    </style>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" name="keyword" class="btn btn-primary" style="background-color: darkgray;padding-left: 16px;padding-right: 16px;margin: 16px;">Keyword</button>
+        <button type="submit" name="tokenize" class="btn btn-primary" style="background-color: darkgray;padding-left: 16px;padding-right: 16px;margin: 16px;">Tokenize</button>
+        <button type="submit" name="classify" class="btn btn-primary" style="background-color: darkgray;padding-left: 16px;padding-right: 16px;margin: 16px;">Classify</button>
+    </form>  
+</div>
+
+{% block result %}
+
+{% endblock result %}
+
+
+{% endblock content %}
+

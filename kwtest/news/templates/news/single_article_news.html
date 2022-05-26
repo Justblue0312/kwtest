@@ -1,0 +1,113 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block title %} Article {% endblock title %}
+
+{% block content %}
+
+<!-- content
+   ================================================== -->
+<section id="content-wrap" class="blog-single">
+    <div class="row">
+        <div class="col-twelve">
+            <article class="format-gallery">
+                <div class="content-media">
+                    <div class="post-slider flexslider">
+                        <ul class="slides">
+                            <li>
+                                <img src="{{article.image_url}}">
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="primary-content">
+                    <h1 class="entry-title">{{article.title}}</h1>
+                    <ul class="entry-meta">
+                        <li class="date">{{article.publish_date}}</li>
+                        <li class="cat"><a>{{article.source|capfirst}}</a><a
+                                href="{{article.attribution}}">{{article.attribution}}</a>
+                        </li>
+                    </ul>
+
+                    <p class="lead">{{article.abstract}}.</p>
+                    <p>{{article.content|safe|linebreaks}}</p>
+
+                    {% if keywords %}
+                    <p class="tags">
+                        <span>Tagged in :</span>
+                        {% for keyword in keywords %}
+                        <a>{{keyword}}</a>
+                        {% endfor %}
+
+                    </p>
+                    {% endif %}
+
+                </div> <!-- end entry-primary -->
+
+            </article>
+
+
+        </div> <!-- end col-twelve -->
+    </div> <!-- end row -->
+
+    <div class="comments-wrap">
+        <div id="comments" class="row">
+            <div class="col-full">
+
+                {% if len == 0 %}
+                <h3>There are no comments</h3>
+                {% else %}
+                <h3>{{len}} comment{{len|pluralize:"s"}}</h3>
+                <!-- commentlist -->
+                {% for comment in comments %}
+
+                <ol class="commentlist">
+                    <li class="depth-1">
+                        <div class="avatar">
+                            <img width="50" height="50" class="avatar" src="{% static 'images/logo.png' %}" alt="">
+                        </div>
+                        <div class="comment-content">
+                            <div class="comment-info">
+                                <cite>{{comment.name}}</cite>
+                                <div class="comment-meta">
+                                    <time class="comment-time" datetime="2014-07-12T23:05">{{comment.created_on}}</time>
+                                    <span class="sep">/</span><a class="reply">{{comment.email}}</a>
+                                </div>
+                            </div>
+                            <div class="comment-text">
+                                <p>{{comment.body}}</p>
+                            </div>
+                        </div>
+                    </li>
+                </ol> <!-- Commentlist End -->
+                {% endfor %}
+                {% endif %}
+
+                <!-- respond -->
+                <div class="respond">
+                    <h3>Leave a Comment</h3>
+                    <form name="contactForm" id="contactForm" method="post" action="">
+                        {% csrf_token %}
+                        <fieldset>
+                            {% for field in form %}
+                            <!-- Input:Text -->
+                            <div class="form__field">
+                                <label for="formInput#text">{{field.label}}</label>
+                                {{field}}
+                            </div>
+                            {% endfor %}
+                            <button type="submit" class="submit button-primary">Submit</button>
+
+                        </fieldset>
+                    </form> <!-- Form End -->
+
+                </div> <!-- Respond End -->
+
+            </div> <!-- end col-full -->
+        </div> <!-- end row comments -->
+    </div> <!-- end comments-wrap -->
+
+</section> <!-- end content -->
+
+{% endblock content %}

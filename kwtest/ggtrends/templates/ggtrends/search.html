@@ -1,0 +1,46 @@
+{% extends 'main.html' %}
+
+{% block title %} Search {% endblock title %}
+
+{% block content %}
+
+<section>
+    {% if search_query %}
+    <div class="row narrow add-bottom text-center">
+        <div class="col-twelve tab-full">
+            <h1 style="margin-top: 16px;">Your search for <span style="color:#89CFF0" :>{{search_query}}</span></h1>
+        </div>
+    </div>
+    {% if suggestions %}
+    <h1 style="text-align: center;">There are 5 relevant keywords</h1>
+    <div class="row add-bottom">
+        <div class="col-twelve">
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Trends Name</th>
+                            <th>Trends Type</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in suggestions %}
+                        <tr>
+                            <td><a>{{i.index}}</a></td>
+                            <td><a>{{i.title}}</a></td>
+                            <td><a>{{i.type}}</a></td>
+                        </tr>
+                        {% endfor %}
+                        {% else %}
+                        <h1 style="text-align: center;">There are no relevant keywords</h1>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div> <!-- end row -->
+</section>
+{% endif %}
+
+{% endblock content %}

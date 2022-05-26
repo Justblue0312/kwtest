@@ -1,0 +1,59 @@
+{% extends 'main.html' %}
+
+{% block title %} Twitter {% endblock title %}
+
+{% block content %}
+
+<div id="content-wrap" class="styles">
+    <div class="row narrow add-bottom text-center">
+        <div class="col-twelve tab-full">
+            <h1>Twitter Trends.</h1>
+        </div>
+    </div>
+    <div class="row half-bottom">
+        <div class="col-twelve">
+            <h3>VietNam Twitter Trends.</h3>
+            <ul class="stats-tabs">
+                {% for trend in vn_trends %}
+                <li><a href="{{ trend.link }}"><em>{{ trend.trend_name }}</em></a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div> <!-- end row -->
+
+    <div class="row half-bottom">
+        <div class="col-twelve">
+            <h3>Worldwide Twitter Trends.</h3>
+            <ul class="stats-tabs">
+                {% for trend in ww_trends %}
+                <li><a href="{{ trend.link }}">{{trend.count}}<em>{{ trend.trend_name }}</em></a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div> <!-- end row -->
+
+    <div class="row half-bottom">
+        <div class="col-twelve">
+            <h3>Top Twitter Trends.</h3>
+            <ul class="stats-tabs">
+                {% for trend in top_trends %}
+                <li><a href="{{ trend.link }}">{{trend.tweets}}<em>{{ trend.trend_name }}</em></a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div> <!-- end row -->
+
+    <div class="row half-bottom">
+        <div class="col-twelve">
+            <h3>Longest Twitter Trends.</h3>
+            <ul class="stats-tabs">
+                {% for trend in longest_trend %}
+                <li><a href="{{ trend.link }}"><em>{{ trend.trend_name }}</em></a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div> <!-- end row -->
+
+</div> <!-- end styles -->
+
+{% endblock content %}'

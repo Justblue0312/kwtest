@@ -1,0 +1,88 @@
+{% extends 'main.html' %}
+
+{% block title %} Home {% endblock title %}
+
+{% block content %}
+
+<!-- masonry
+   ================================================== -->
+<section id="bricks">
+  <div class="row masonry">
+    <!-- brick-wrapper -->
+    <div class="bricks-wrapper">
+      <div class="grid-sizer"></div>
+
+      {% if slices %}
+      <div class="brick entry featured-grid animate-this">
+        <div class="entry-content">
+          <div id="featured-post-slider" class="flexslider">
+            <ul class="slides">
+              {% for slice in slices %}
+              <li>
+                <div class="featured-post-slide">
+                  <div class="post-background" style="background-image: url('{{slice.image_url}}');"></div>
+                  <div class="overlay"></div>
+
+                  <div class="post-content">
+                    <ul class="entry-meta">
+                      <li>{{slice.publish_date}}</li>
+                      <li><a href="{{slice.url}}">{{slice.source}}</a></li>
+                    </ul>
+
+                    <h1 class="slide-title">
+                      <a href="{{slice.url}}" title="">{{slice.title|slice:50}}...</a>
+                    </h1>
+                  </div>
+                </div>
+              </li>
+              <!-- /slide -->
+              {% endfor %}
+            </ul>
+            <!-- end slides -->
+          </div>
+          <!-- end featured-post-slider -->
+        </div>
+        <!-- end entry content -->
+      </div>
+      {% endif %}
+
+      {% if articles %}
+      {% for article in articles %}
+      <article class="brick entry format-standard animate-this">
+
+        <div class="entry-thumb">
+          <a href="{% url 'article' article.id %}" class="thumb-link">
+            <img src="{{article.image_url}}" alt="building">
+          </a>
+        </div>
+
+        <div class="entry-text">
+          <div class="entry-header">
+
+            <div class="entry-meta">
+              <span class="cat-links">
+                <a>{{article.attribution}}</a>
+                <a>{{article.source|capfirst}}</a>
+              </span>
+            </div>
+
+            <h1 class="entry-title"><a href="{% url 'article' article.id %}">{{article.title}}</a></h1>
+
+          </div>
+          <div class="entry-excerpt">
+            {{article.abstract}}
+          </div>
+        </div>
+
+      </article> <!-- end article -->
+      {% endfor %}
+      {% endif %}
+
+    </div>
+    <!-- end brick-wrapper -->
+  </div>
+  <!-- end row -->
+</section>
+<!-- end bricks -->
+
+{% endblock content %}

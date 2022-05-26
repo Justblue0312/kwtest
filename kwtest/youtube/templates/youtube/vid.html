@@ -1,0 +1,80 @@
+{% extends 'main.html' %}
+
+{% block title %} Youtube {% endblock title %}
+
+{% block content %}
+
+<div id="content-wrap" class="styles">
+    <div class="row narrow add-bottom text-center">
+        <div class="col-twelve tab-full">
+            <h1>VietNam Trends Video.</h1>
+        </div>
+    </div>
+
+    {% if trend_vid %}
+    <div class="row half-bottom">
+        {% for vid in trend_vid %}
+        <div class="col-six tab-full">
+            <h3>{{vid.vid_name}}</h3>
+            <div class="fluid-video-wrapper">
+                <iframe src="{{vid.embed_link}}" width="500" height="281" frameborder="0" webkitallowfullscreen
+                    mozallowfullscreen allowfullscreen></iframe>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <!-- end row -->
+    {% endif %}
+
+    <div class="row narrow add-bottom text-center">
+        <div class="col-twelve tab-full">
+            <h1>VietNam Music Video.</h1>
+        </div>
+    </div>
+
+    {% if music_vid %}
+    <div class="row half-bottom">
+        {% for vid in music_vid %}
+        <div class="col-six tab-full">
+            <h3>{{vid.vid_name}}</h3>
+            <div class="fluid-video-wrapper">
+                <iframe src="{{vid.embed_link}}" width="500" height="281" frameborder="0" webkitallowfullscreen
+                    mozallowfullscreen allowfullscreen></iframe>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <!-- end row -->
+    {% endif %}
+
+    {% if trend_all %}
+    <div class="row half-bottom">
+        <div class="col-six tab-full">
+            <h3>Trend Videos List</h3>
+            {% for trend in trend_all %}
+            <ul>
+                <li><a href="{{trend.vid_link}}">{{trend.vid_name}}</a></li>
+            </ul>
+            {% endfor %}
+
+        </div> <!-- end row -->
+        {% endif %}
+    </div>
+
+    {% if music_all %}
+    <div class="row half-bottom">
+        <div class="col-six tab-full">
+            <h3>Music Videos List</h3>
+            {% for trend in music_all %}
+            <ul>
+                <li><a href="{{trend.vid_link}}">{{trend.vid_name}}</a></li>
+            </ul>
+            {% endfor %}
+
+        </div> <!-- end row -->
+        {% endif %}
+    </div>
+
+</div> <!-- end styles -->
+
+{% endblock content %}

@@ -1,0 +1,150 @@
+{% extends 'main.html' %}
+
+{% block title %}
+Google Trending
+{% endblock title %}
+
+{% block content %}
+
+<div id="content-wrap" class="styles">
+    <section class="section is-medium">
+        <div class="row narrow add-bottom text-center">
+            <div class="col-twelve tab-full">
+                <h2>Today Top Search</h2>
+                <h2>Google Search Results Today In Vietnam</h2>
+            </div>
+        </div>
+
+        <div class="row add-bottom">
+            <div class="col-twelve">
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Trends Name</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if today_trend %}
+                            {% for i in today_trend %}
+                            <tr>
+                                <td><a>{{i.index}}</a></td>
+                                <td><a>{{i.exploreLink}}</a></td>
+                                <td><a href="https://www.google.com/search?q='{{i.exploreLink}}'"
+                                        style="font-size: 12px;text-decoration: underline;">Follow link to see
+                                        more...</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div> <!-- end row -->
+    </section>
+
+    <section class="section is-medium">
+        <div class="row narrow add-bottom text-center">
+            <div class="col-twelve tab-full">
+                <h2>Trending</h2>
+                <h2>Google search results in the last 24 hours</h2>
+            </div>
+        </div>
+        <div class="row add-bottom">
+            <div class="col-twelve">
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Trends Name</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if trend_data %}
+                            {% for i in trend_data %}
+                            <tr>
+                                <td><a>{{i.index}}</a></td>
+                                <td><a>{{i.0}}</a></td>
+                                <td><a href="https://www.google.com/search?q='{{i.0}}'"
+                                        style="font-size: 12px;text-decoration: underline;">Follow link to see
+                                        more...</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div> <!-- end row -->
+    </section>
+
+    {% if fy_trend %}
+    <section class="section is-medium">
+        <div class="row narrow add-bottom text-center">
+            <div class="col-twelve tab-full">
+                <h1>The Last 5 year Trending</h1>
+            </div>
+        </div>
+        {% for year in fy_trend %}
+        {% for key, value in year.items %}
+        <h1 style="text-align: center;">Trends Year : {{key}}</h1>
+        <div class="row add-bottom">
+            <div class="col-twelve">
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Trends Name</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for trend in value %}
+                            <tr>
+                                <td>{{trend.index}}</td>
+                                <td>{{trend.title}}</td>
+                                <td><a href="https://www.google.com/search?q='{{trend.title}}'"
+                                        style="font-size: 12px;text-decoration: underline;">Follow link to see
+                                        more...</a></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div> <!-- end row -->
+        {% endfor %}
+        </br>
+        {% endfor %}
+    </section>
+    {% endif %}
+
+    <section class="section is-medium">
+        {% for i, j in cate_trend.items %}
+        <br />
+        <br />
+        <h1 class="title" style="text-align: center;"><strong>{{i}}</strong></h1>
+        <br />
+        {% for key, value in j.items %}
+        <a href="https://www.google.com/search?q='{{value}}' "><button style="text-align: center;" id="btn"
+                class="btn btn--main btn--sm">{{value}} </button></a>
+        {% endfor %}
+        {% endfor %}
+
+    </section>
+
+</div> <!-- end styles -->
+
+
+
+
+
+
+{% endblock content %}
