@@ -13,10 +13,10 @@ from .utils import get_post_from_facebook_url
 def getPosts(request):
     # posts = get_post_from_facebook_url(request, BEATVN_URL)
     # posts = get_post_from_facebook_url(request, THEANH28_URL)
-    posts = get_post_from_facebook_url(request, VNEX_URL)
-    for post in posts:
-        post_model = Post(**post)
-        post_model.save()
+    # posts = get_post_from_facebook_url(request, VNEX_URL)
+    # for post in posts:
+    #     post_model = Post(**post)
+    #     post_model.save()
 
     lastSeenId = str('inf')
     rows = Post.objects.all().order_by('content')
