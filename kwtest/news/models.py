@@ -8,7 +8,7 @@ class ArticleNews(models.Model):
                           primary_key=True, editable=False)
     created_at = models.DateTimeField(auto_now_add=True)
     title = models.CharField(max_length=10000, null=True, blank=True)
-    abstract = models.CharField(max_length=100000, blank=True, null=True)
+    abstract = models.CharField(max_length=10000, blank=True, null=True)
     url = models.URLField()
     content = models.TextField(null=True, blank=True)
     publish_date = models.DateTimeField(blank=True, null=True)
